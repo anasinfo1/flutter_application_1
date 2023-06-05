@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/merry.dart';
 import 'package:flutter_svg/svg.dart';
 
 void main() {
@@ -12,8 +13,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: FacebookApp(),
+    return MaterialApp(
+      initialRoute: '/',
+      routes: {
+        // When navigating to the "/" route, build the FirstScreen widget.
+        '/': (context) => const FacebookApp(),
+        // When navigating to the "/second" route, build the SecondScreen widget.
+        '/merry': (context) => const Merry(),
+      },
       debugShowCheckedModeBanner: false,
     );
   }
@@ -191,6 +198,7 @@ class FacebookApp extends StatelessWidget {
 
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 // ignore: prefer_const_literals_to_create_immutables
                 children: [
                   TextField(
@@ -223,7 +231,7 @@ class FacebookApp extends StatelessWidget {
                   ),
                   Container(
                     width: 266,
-                    padding: EdgeInsets.fromLTRB(10, 0, 20, 0),
+                    padding: EdgeInsets.fromLTRB(10, 2, 20, 0),
                     margin: EdgeInsets.only(top: 10),
                     decoration: BoxDecoration(
                       color: Colors.grey[300],
@@ -236,6 +244,7 @@ class FacebookApp extends StatelessWidget {
                         border: InputBorder.none,
                         prefixIcon: Icon(Icons.lock),
                         suffix: Icon(Icons.visibility),
+                        contentPadding: EdgeInsets.symmetric(vertical: 5.0),
                       ),
                     ),
                   ),
@@ -266,7 +275,7 @@ class FacebookApp extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () { Navigator.pushNamed(context, '/merry'); },
                     style: ButtonStyle(
                       backgroundColor: MaterialStatePropertyAll(Colors.red),
                       padding: MaterialStatePropertyAll(
